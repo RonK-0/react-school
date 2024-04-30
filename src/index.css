@@ -1,0 +1,107 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base{
+    /* START OF BASE */
+    :root{
+        /* --dark_bg: 241, 241, 241; */
+        --primary: 255 255 255;
+        --secondary: 242 242 242;
+        --accent: 80 881 144;
+        --content: 0 0 0;
+        --line: 212 212 212;
+    }
+    .dark{
+        /* --dark_bg: 15, 15, 15; */
+        --primary: 0 0 0;
+        --secondary: 22 22 22;
+        --accent: 80 881 144;
+        --content: 255 255 255;
+        --line: 14 14 14;
+    }
+
+    html, body{
+        @apply scroll-smooth;
+    }
+    body{
+        @apply overflow-x-hidden bg-primary text-content;
+    }
+    a{
+        @apply text-content
+    }
+    h1,h2,h3,h4,h5,h6{ @apply font-bold; }
+    h1{ @apply text-3xl mb-4; }
+    h2{ @apply text-xl mb-4; }
+    h3{ @apply text-lg mb-2; }
+    h4{ @apply text-base mb-4; }
+    p{ @apply mb-2; }
+    ul{ @apply text-content; }
+    input, textarea, button{ @apply outline-none focus:outline-none; }
+    img, video, button{ @apply select-none; }
+    /* END OF BASE */
+}
+
+@layer components{
+    /* START OF COMPONENTS */
+    .nav{
+        @apply space-y-4 mt-20;
+        .nav-link {
+            @apply p-1 pl-8;
+            a{
+                @apply p-2 flex gap-3 items-center
+            }
+        }
+        .nav-link.active{
+            @apply border-l border-accent;
+            a{
+                @apply text-accent;
+            }
+        }
+
+        .nav-link:hover a{
+            @apply text-accent;
+        }
+    }
+
+
+    .header{
+        
+    }
+
+    .footer{
+        
+    }
+    /* END OF COMPONENTS */
+}
+
+@layer utilities{
+    /* START OF UTILITIES */
+    .f-col{ @apply flex flex-col; }
+    .f-col-center{ @apply flex flex-col items-center justify-center; }
+    .center {@apply items-center justify-center; }
+    .between-center {@apply justify-between items-center; }
+    .between-end {@apply justify-between items-end; }
+
+    .ft-el{ @apply font-extralight }
+    .ft-lt{ @apply font-light }
+    .ft-nm{ @apply font-normal }
+    .ft-md{ @apply font-medium }
+    .ft-sb{ @apply font-semibold }
+    .ft-b{ @apply font-bold }
+    .ft-ex{ @apply font-extrabold }
+
+    .mx-a{ @apply mx-auto }
+
+    .tx-a{ @apply left-1/2 -translate-x-1/2 }
+    .ty-a{ @apply top-1/2 -translate-y-1/2 }
+    .txy-a{ @apply top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 }
+
+    .pointer{ @apply cursor-pointer; }
+
+    .scrollbar-gutter{
+        scrollbar-width: thin;
+        scrollbar-gutter: stable;
+    }
+    /* END OF UTILITIES */
+}
