@@ -19,8 +19,9 @@ export default {
         content: 'rgb(var(--content) / <alpha-value>)',
         line:'rgb(var(--line) / <alpha-value>)',
         alert:'rgb(var(--alert) / <alpha-value>)',
-        disable:'rgb(var(--disable) / <alpha-value>)',
+        cancel:'rgb(var(--cancel) / <alpha-value>)',
         info:'rgb(var(--info) / <alpha-value>)',
+        warning:'rgb(var(--warning) / <alpha-value>)',
       },
 
       // backgroundColor: {
@@ -60,6 +61,9 @@ export default {
       },
       fontFamily: {
         // 'text-inter': ["Inter", "sans-serif"],
+        regular: ["Roboto Regular", "Helvetica", "Arial", "sans-serif"],
+        thick: ["Roboto Medium", "Helvetica", "Arial", "sans-serif"],
+        thicker: ["Roboto Bold", "Helvetica", "Arial", "sans-serif"]
       },
       fontSize: {
         // 'button' : 'clamp(16px, 1vw, 24px) !important',
@@ -75,6 +79,8 @@ export default {
       animation: {
         // 'bannerSlide': 'bannerSlide 15s ease forwards',
         // 'onCheck': 'onCheck 0.2s ease',
+        'rotate': "rotate 2s linear infinite",
+        'loading' : "loading 1.5s ease-in infinite",
       },
       keyframes: {
         // better to use direct CSS keyframes on input file base
@@ -82,17 +88,17 @@ export default {
         //   '0%' : {'background-position': '25% 0%'},
         //   '100%' : {'background-position': '40% 80%'}
         // },
+        'rotate' : {
+          "100%" : {"transform":"rotate(360deg)"}
+        },
+        "loading": {
+            "0%" : { "transform": "translateX(-100%)" },
+          "100%" : { "transform": "translateX(100%)" },
+        },
 
-        // 'onCheck': {
-        //   '0%' : {'scale': '0'},
-        //   '100%' : {'scale': '1'}
-        // },
       },
       boxShadow:{
         // 'top_button_shadow'     : '4px 4px 10px rgba(15, 15, 15, 0.2)',
-        'category_slider_right'     : '-30px 1px 16px rgba(var(--dark_bg), 1), -30px -1px 16px rgba(var(--dark_bg), 1),-30px 2px 16px rgba(var(--dark_bg), 1), -30px -2px 16px rgba(var(--dark_bg), 1)',
-        'category_slider_left'      : '30px 1px 16px rgba(var(--dark_bg), 1), 30px -1px 16px rgba(var(--dark_bg), 1), 30px 2px 16px rgba(var(--dark_bg), 1), 30px -2px 16px rgba(var(--dark_bg), 1)',
-        'category_slider_no_shadow' : '0px 0px 0px rgba(0, 0, 0, 0.0)'
       },
       dropShadow:{
         // 'top_button_shadow'     : '4px 4px 10px rgba(0, 0, 0, 0.2)',
@@ -115,8 +121,8 @@ export default {
       width:{
         // 'bannerSlider_card_bg' : 'calc(100% + calc(1.5 * calc(1.5rem * 0.5)))',
         // 'tel_icon' : 'clamp(24px, 10vw, 38px)',
-        15: "60px",
-        18: "72px"
+        15: "3.75rem",
+        18: "4.5rem"
       },
       maxWidth:{
         // 'bannerSlider_card_bg' : 'calc(85% + calc(1.5rem * 0.5))',

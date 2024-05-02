@@ -1,10 +1,11 @@
 import React from 'react'
 import { LiaTimesSolid } from 'react-icons/lia'
+import ModalWrapper from '../../../../partials/modals/ModalWrapper'
+import SpinnerButton from '../../../../partials/spinners/SpinnerButton'
 
 const ModalAddStudent = () => {
   return (
-    <div className='fixed top-0 left-0 w-full h-screen flex justify-end z-30'>
-        <div className="backdrop absolute top-0 left-0 w-full h-full bg-primary/60 z-[-1]"></div>
+    <ModalWrapper>
         <div className="main-modal w-[300px] bg-secondary text-content h-full">
             <div className="modal-header p-4 relative">
                 <h2>New Student</h2>
@@ -18,13 +19,11 @@ const ModalAddStudent = () => {
                             <input type="text" name="" id="" required />
                             <small className="error-msg">Required*</small>
                         </div>
-
                         <div className="input-wrap">
                             <label htmlFor="">Class</label>
                             <input type="text" name="" id="" required />
                             <small className="error-msg">Required*</small>
                         </div>
-
                         <div className="input-wrap">
                             <label htmlFor="">Gender</label>
                             <select name="" id="" required>
@@ -33,23 +32,20 @@ const ModalAddStudent = () => {
                             </select>
                             <small className="error-msg">Required*</small>
                         </div>
-
                         <div className="input-wrap">
                             <label htmlFor="">Age</label>
                             <input type="number" name="" id="" required />
                             <small className="error-msg">Required*</small>
                         </div>
                     </div>
-
                     <div className="form-action">
-                        <button className='btn btn-form btn--accent'> Add </button>
-                        <button className='btn btn-form btn--disable'> Cancel </button>
+                        <button className='btn btn-form btn--accent'> Add <SpinnerButton/></button>
+                        <button className='btn btn-form btn--cancel'> Cancel </button>
                     </div>
                 </form>
             </div>
         </div>
-        
-    </div>
+    </ModalWrapper>
   )
 }
 
