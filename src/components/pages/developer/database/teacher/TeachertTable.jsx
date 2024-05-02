@@ -5,7 +5,7 @@ import TableLoader from "../../../../partials/TableLoader";
 import NoData from "../../../../partials/NoData";
 import SpinnerFetching from "../../../../partials/spinners/SpinnerFetching";
 
-const StudentTable = ({ setShowInfo, showInfo }) => {
+const TeacherTable = ({ setShowInfo, showInfo }) => {
   const handleShowInfo = () => setShowInfo(!showInfo);
 
   return (
@@ -72,4 +72,4 @@ const StudentTable = ({ setShowInfo, showInfo }) => {
   );
 };
 
-export default StudentTable;
+export default TeacherTable;

@@ -1,6 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from "./components/pages/Home/Home"
 import Student from "./components/pages/developer/database/student/Student"
+import Staff from "./components/pages/developer/database/staff/Staff"
+import Teacher from "./components/pages/developer/database/teacher/Teacher"
 
 function App() {
   return (
@@ -8,7 +10,9 @@ function App() {
       <Router>
         <Routes>
           <Route path="/" element={<Home/>}/>
-          <Route path="/database" element={<Student/>}/>
+          <Route path="/database/student" element={<Student/>}/>
+          <Route path="/database/teacher" element={<Teacher/>}/>
+          <Route path="/database/staff" element={<Staff/>}/>
         </Routes>
       </Router>
 

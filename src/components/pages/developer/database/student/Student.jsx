@@ -43,13 +43,13 @@ const Student = () => {
             <div className="tab flex between-center mt-8 border-b border-line mb-8">
               <ul className="flex items-center gap-10">
                 <li className="tab-link active">
-                  <Link to="/student">Student</Link>
+                  <Link to="/database/student">Student</Link>
                 </li>
                 <li className="tab-link">
-                  <Link to="/teacher">Teacher</Link>
+                  <Link to="/database/teacher">Teacher</Link>
                 </li>
                 <li className="tab-link">
-                  <Link to="/staff">Staff</Link>
+                  <Link to="/database/staff">Staff</Link>
                 </li>
               </ul>
               <button type="button" className="btn btn--accent">
