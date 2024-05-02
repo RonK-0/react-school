@@ -11,6 +11,9 @@
         --accent: 80 881 144;
         --content: 0 0 0;
         --line: 212 212 212;
+        --alert: 220 38 38;
+        --disable: 127 127 127;
+        --info: 67 139 208;
     }
     .dark{
         /* --dark_bg: 15, 15, 15; */
@@ -19,13 +22,17 @@
         --accent: 80 881 144;
         --content: 255 255 255;
         --line: 14 14 14;
+        --alert: 220 38 38;
+        --disable: 127 127 127;
+        --info: 67 130 208;
     }
 
     html, body{
         @apply scroll-smooth;
     }
     body{
-        @apply overflow-x-hidden bg-primary text-content;
+        @apply overflow-x-hidden
+        bg-primary text-content;
     }
     a{
         @apply text-content
@@ -35,10 +42,43 @@
     h2{ @apply text-xl mb-4; }
     h3{ @apply text-lg mb-2; }
     h4{ @apply text-base mb-4; }
-    p{ @apply mb-2; }
+    h5{ @apply text-base mb-2; }
+    p{ @apply mb-2 !leading-6 opacity-60; }
     ul{ @apply text-content; }
+    table{
+        @apply w-full text-xs;
+        th{
+            @apply font-bold py-4 px-2 text-left;
+        }
+        td{
+            @apply p-2 text-left;
+        }
+        tbody tr:nth-child(odd){
+            @apply bg-secondary bg-opacity-20;
+        }
+
+        tr{
+            @apply cursor-pointer;
+            td{
+                @apply select-none;
+            }
+        }
+    }
     input, textarea, button{ @apply outline-none focus:outline-none; }
     img, video, button{ @apply select-none; }
+
+    .tooltip{
+        @apply text-base relative;
+    }
+    .tooltip:after{
+        @apply p-0.5 px-1.5 rounded-md
+        absolute content-[attr(data-tooltip)]
+        text-xs text-content top-[calc(100%+10px)] tx-a
+        bg-secondary/90 scale-0 transition-transform;
+    }
+    .tooltip:hover:after{
+        @apply scale-100
+    }
     /* END OF BASE */
 }
 
@@ -64,6 +104,40 @@
         }
     }
 
+    .tab{
+        .tab-link{
+            @apply px-3 py-5;
+        }
+        .tab-link.active{
+            @apply border-b border-accent;
+            a{
+                @apply text-accent;
+            }
+        }
+    }
+    .table-action{
+        ul{
+            @apply flex gap-4;
+        }
+    }
+
+    .input-wrap{
+        @apply mb-3 relative;
+        label{
+            @apply mb-1 block;
+        }
+        input, select, textarea{
+            @apply block w-full px-1 py-2 rounded-md
+            border-2 text-stone-900
+            focus:border-info focus:bg-info/5 focus:text-info;
+        }
+        small{
+            @apply absolute top-1 right-1 text-red-500;
+        }
+    }
+    .form-action{
+        @apply flex gap-2 justify-end items-center;
+    }
 
     .header{
         
@@ -76,6 +150,26 @@
 }
 
 @layer utilities{
+    /* START OF BUTTONS */
+    .btn{
+        @apply px-2 py-1
+        rounded-md
+        text-sm
+        transition-colors
+        flex items-center gap-2;
+    }
+    .btn--accent{
+        @apply bg-accent text-white;
+    }
+    .btn-form{
+        @apply p-2 w-1/2 flex center gap-2;
+    }
+    .btn--disable{
+        @apply bg-disable text-stone-800;
+    }
+    /* END OF BUTTONS */
+
+
     /* START OF UTILITIES */
     .f-col{ @apply flex flex-col; }
     .f-col-center{ @apply flex flex-col items-center justify-center; }
@@ -104,4 +198,16 @@
         scrollbar-gutter: stable;
     }
     /* END OF UTILITIES */
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }

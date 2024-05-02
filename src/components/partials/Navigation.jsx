@@ -1,3 +1,4 @@
+import { RxDashboard } from "react-icons/rx"; 
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { FaTiktok } from "react-icons/fa";
@@ -8,7 +9,7 @@ const Navigation = () => {
         <h2>School</h2>
 
         <ul className='nav'>
-            <li className='nav-link active'><Link to={'#'}><FaTiktok /> Dashboard</Link></li>
+            <li className='nav-link active'><Link to={'#'}><RxDashboard /> Dashboard</Link></li>
             <li className='nav-link'><Link to={'#'}><FaTiktok /> Messenger</Link></li>
             <li className='nav-link'><Link to={'#'}><FaTiktok /> Calendar</Link></li>
             <li className='nav-link'><Link to={'#'}><FaTiktok /> Database</Link></li>

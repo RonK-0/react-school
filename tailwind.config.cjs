@@ -17,25 +17,27 @@ export default {
         secondary: 'rgb(var(--secondary) / <alpha-value>)',
         accent: 'rgb(var(--accent) / <alpha-value>)',
         content: 'rgb(var(--content) / <alpha-value>)',
-        line:'rgb(var(--line) / <alpha-value>)'
+        line:'rgb(var(--line) / <alpha-value>)',
+        alert:'rgb(var(--alert) / <alpha-value>)',
+        disable:'rgb(var(--disable) / <alpha-value>)',
+        info:'rgb(var(--info) / <alpha-value>)',
       },
 
-      backgroundColor: {
-        primary: 'rgb(var(--primary) / <alpha-value>)',
-        secondary: 'rgb(var(--secondary) / <alpha-value>)',
-        accent: 'rgb(var(--accent) / <alpha-value>)',
-        content: 'rgb(var(--content) / <alpha-value>)',
-        line:'rgb(var(--line) / <alpha-value>)'
-      },
+      // backgroundColor: {
+      //   primary: 'rgb(var(--primary) / <alpha-value>)',
+      //   secondary: 'rgb(var(--secondary) / <alpha-value>)',
+      //   accent: 'rgb(var(--accent) / <alpha-value>)',
+      //   content: 'rgb(var(--content) / <alpha-value>)',
+      //   line:'rgb(var(--line) / <alpha-value>)'
+      // },
 
-      fill: {
-        primary: 'rgb(var(--primary) / <alpha-value>)',
-        secondary: 'rgb(var(--secondary) / <alpha-value>)',
-        accent: 'rgb(var(--accent) / <alpha-value>)',
-        content: 'rgb(var(--content) / <alpha-value>)',
-        line:'rgb(var(--line) / <alpha-value>)'
-      },
-
+      // fill: {
+      //   primary: 'rgb(var(--primary) / <alpha-value>)',
+      //   secondary: 'rgb(var(--secondary) / <alpha-value>)',
+      //   accent: 'rgb(var(--accent) / <alpha-value>)',
+      //   content: 'rgb(var(--content) / <alpha-value>)',
+      //   line:'rgb(var(--line) / <alpha-value>)'
+      // },
       
       backgroundImage:{
         // transparent_bg: "url('../dist/img/transparent.png')",
