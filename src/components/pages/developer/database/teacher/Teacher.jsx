@@ -10,11 +10,14 @@ import ModalValidate from "../../../../partials/modals/ModalValidate";
 import ModalConfirm from "../../../../partials/modals/ModalConfirm";
 import SpinnerWindow from "../../../../partials/spinners/SpinnerWindow";
 import ModalAddTeacher from "./ModalAddTeahcer";
-import TeacherTable from "./TeachertTable";
+import TeacherTable from "./TeacherTable";
 
 const Teacher = () => {
   const [showInfo, setShowInfo] = React.useState(false);
   const handleShowInfo = () => setShowInfo(!showInfo);
+
+  const [showAddTeacher, setAddTeacher] = React.useState(false);
+  const handleShowAddTeacher = () => setAddTeacher(!showAddTeacher);
   return (
     <section className="flex">
       <Navigation />
@@ -33,7 +36,7 @@ const Teacher = () => {
                   type="text"
                   name=""
                   id=""
-                  placeholder="Search student"
+                  placeholder="Search Teacher"
                   className="p-1 px-3 pl-10 bg-secondary border border-stone-800 rounded-md placeholder:text-white placeholder:opacity-20 text-content"
                 />
                 <CiSearch className="absolute ty-a left-2 z-[1] text-white text-2xl opacity-20" />
@@ -52,7 +55,7 @@ const Teacher = () => {
                   <Link to="/database/staff">Staff</Link>
                 </li>
               </ul>
-              <button type="button" className="btn btn--accent">
+              <button type="button" className="btn btn--accent" onClick={handleShowAddTeacher}>
                 <FiPlus /> New
               </button>
             </div>
@@ -63,7 +66,12 @@ const Teacher = () => {
           <DatabaseInformation showInfo={showInfo} />
         </div>
       </main>
-      {/* <ModalAddTeacher/> */}
+      {showAddTeacher && (
+        <ModalAddTeacher
+          setAddTeacher={setAddTeacher}
+          showAddTeacher={showAddTeacher}
+        />
+      )}
       {/* <ModalError position="center"/> */}
       {/* <ModalValidate position="center"/> */}
       {/* <ModalConfirm position="center"/> */}

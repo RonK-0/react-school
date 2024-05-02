@@ -143,10 +143,10 @@
 
     .tab{
         .tab-link{
-            @apply px-3 py-5;
+            @apply px-3 py-5 border-b border-transparent;
         }
         .tab-link.active{
-            @apply border-b border-accent;
+            @apply border-accent;
             a{
                 @apply text-accent;
             }

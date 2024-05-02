@@ -3,14 +3,14 @@ import { LiaTimesSolid } from "react-icons/lia";
 import ModalWrapper from "../../../../partials/modals/ModalWrapper";
 import SpinnerButton from "../../../../partials/spinners/SpinnerButton";
 
-const ModalAddStudent = ({ setAddStudent, showAddStudent }) => {
-  const handleAddStudent = () => setAddStudent(!showAddStudent);
+const ModalAddStaff = ({setAddStaff, showAddStaff}) => {
+  const handleAddStaff = () => setAddStaff(!showAddStaff);
   return (
     <ModalWrapper>
       <div className="main-modal w-[300px] bg-secondary text-content h-full">
         <div className="modal-header p-4 relative">
-          <h2>New Student</h2>
-          <button className="absolute top-[25px] right-4" onClick={handleAddStudent}>
+          <h2>New Staff</h2>
+          <button className="absolute top-[25px] right-4" onClick={handleAddStaff}>
             <LiaTimesSolid />
           </button>
         </div>
@@ -55,4 +55,4 @@ const ModalAddStudent = ({ setAddStudent, showAddStudent }) => {
   );
 };
 
-export default ModalAddStudent;
+export default ModalAddStaff;

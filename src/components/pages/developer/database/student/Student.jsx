@@ -15,6 +15,9 @@ import SpinnerWindow from "../../../../partials/spinners/SpinnerWindow";
 const Student = () => {
   const [showInfo, setShowInfo] = React.useState(false);
   const handleShowInfo = () => setShowInfo(!showInfo);
+
+  const [showAddStudent, setAddStudent] = React.useState(false);
+  const handleAddStudent = () => setAddStudent(!showAddStudent);
   return (
     <section className="flex">
       <Navigation />
@@ -33,7 +36,7 @@ const Student = () => {
                   type="text"
                   name=""
                   id=""
-                  placeholder="Search student"
+                  placeholder="Search Student"
                   className="p-1 px-3 pl-10 bg-secondary border border-stone-800 rounded-md placeholder:text-white placeholder:opacity-20 text-content"
                 />
                 <CiSearch className="absolute ty-a left-2 z-[1] text-white text-2xl opacity-20" />
@@ -52,7 +55,7 @@ const Student = () => {
                   <Link to="/database/staff">Staff</Link>
                 </li>
               </ul>
-              <button type="button" className="btn btn--accent">
+              <button type="button" className="btn btn--accent" onClick={handleAddStudent}>
                 <FiPlus /> New
               </button>
             </div>
@@ -63,7 +66,7 @@ const Student = () => {
           <DatabaseInformation showInfo={showInfo} />
         </div>
       </main>
-      {/* <ModalAddStudent/> */}
+      {showAddStudent && <ModalAddStudent setAddStudent={setAddStudent} showAddStudent={showAddStudent}/>}
       {/* <ModalError position="center"/> */}
       {/* <ModalValidate position="center"/> */}
       {/* <ModalConfirm position="center"/> */}
