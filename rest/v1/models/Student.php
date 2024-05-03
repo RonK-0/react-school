@@ -5,6 +5,8 @@ Class Student {
     public $student_name;
     public $student_class;
     public $student_age;
+    public $student_gender;
+    public $student_email;
     public $student_is_active;
     public $student_created;
     public $student_datetime;
@@ -24,6 +26,8 @@ Class Student {
             $sql .= "student_name, ";
             $sql .= "student_class, ";
             $sql .= "student_age, ";
+            $sql .= "student_gender, ";
+            $sql .= "student_email, ";
             $sql .= "student_is_active, ";
             $sql .= "student_created, ";
             $sql .= "student_datetime ";
@@ -31,6 +35,8 @@ Class Student {
             $sql .= ":student_name, ";
             $sql .= ":student_class, ";
             $sql .= ":student_age, ";
+            $sql .= ":student_gender, ";
+            $sql .= ":student_email, ";
             $sql .= ":student_is_active, ";
             $sql .= ":student_created, ";
             $sql .= ":student_datetime ";
@@ -41,6 +47,8 @@ Class Student {
                 "student_name" => $this->student_name,
                 "student_age" => $this->student_age,
                 "student_class" => $this->student_class,
+                "student_gender" => $this->student_gender,
+                "student_email" => $this->student_email,
                 "student_is_active" => $this->student_is_active,
                 "student_created" => $this->student_created,
                 "student_datetime" => $this->student_datetime,
@@ -90,6 +98,8 @@ Class Student {
             $sql .= "student_name = :student_name, ";
             $sql .= "student_age = :student_age, ";
             $sql .= "student_class = :student_class, ";
+            $sql .= "student_gender = :student_gender, ";
+            $sql .= "student_email = :student_email, ";
             $sql .= "student_datetime = :student_datetime ";
             $sql .= "where student_aid  = :student_aid ";
             $query = $this->connection->prepare($sql);
@@ -97,6 +107,8 @@ Class Student {
                 "student_name" => $this->student_name,
                 "student_age" => $this->student_age,
                 "student_class" => $this->student_class,
+                "student_gender" => $this->student_gender,
+                "student_email" => $this->student_email,
                 "student_datetime" => $this->student_datetime,
                 "student_aid" => $this->student_aid,
             ]);

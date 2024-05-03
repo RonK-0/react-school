@@ -5,6 +5,8 @@ Class Teacher {
     public $teacher_name;
     public $teacher_class;
     public $teacher_age;
+    public $teacher_gender;
+    public $teacher_email;
     public $teacher_is_active;
     public $teacher_created;
     public $teacher_datetime;
@@ -24,6 +26,8 @@ Class Teacher {
             $sql .= "teacher_name, ";
             $sql .= "teacher_class, ";
             $sql .= "teacher_age, ";
+            $sql .= "teacher_gender, ";
+            $sql .= "teacher_email, ";
             $sql .= "teacher_is_active, ";
             $sql .= "teacher_created, ";
             $sql .= "teacher_datetime ";
@@ -31,6 +35,8 @@ Class Teacher {
             $sql .= ":teacher_name, ";
             $sql .= ":teacher_class, ";
             $sql .= ":teacher_age, ";
+            $sql .= ":teacher_gender, ";
+            $sql .= ":teacher_email, ";
             $sql .= ":teacher_is_active, ";
             $sql .= ":teacher_created, ";
             $sql .= ":teacher_datetime ";
@@ -41,6 +47,8 @@ Class Teacher {
                 "teacher_name" => $this->teacher_name,
                 "teacher_age" => $this->teacher_age,
                 "teacher_class" => $this->teacher_class,
+                "teacher_gender" => $this->teacher_gender,
+                "teacher_email" => $this->teacher_email,
                 "teacher_is_active" => $this->teacher_is_active,
                 "teacher_created" => $this->teacher_created,
                 "teacher_datetime" => $this->teacher_datetime,
@@ -90,6 +98,8 @@ Class Teacher {
             $sql .= "teacher_name = :teacher_name, ";
             $sql .= "teacher_age = :teacher_age, ";
             $sql .= "teacher_class = :teacher_class, ";
+            $sql .= "teacher_gender = :teacher_gender, ";
+            $sql .= "teacher_email = :teacher_email, ";
             $sql .= "teacher_datetime = :teacher_datetime ";
             $sql .= "where teacher_aid  = :teacher_aid ";
             $query = $this->connection->prepare($sql);
@@ -97,6 +107,8 @@ Class Teacher {
                 "teacher_name" => $this->teacher_name,
                 "teacher_age" => $this->teacher_age,
                 "teacher_class" => $this->teacher_class,
+                "teacher_gender" => $this->teacher_gender,
+                "teacher_email" => $this->teacher_email,
                 "teacher_datetime" => $this->teacher_datetime,
                 "teacher_aid" => $this->teacher_aid,
             ]);

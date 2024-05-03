@@ -5,8 +5,9 @@ import TableLoader from "../../../../partials/TableLoader";
 import NoData from "../../../../partials/NoData";
 import SpinnerFetching from "../../../../partials/spinners/SpinnerFetching";
 
-const StudentTable = ({ setShowInfo, showInfo }) => {
+const StudentTable = ({ setShowInfo, showInfo, isLoading, student }) => {
   const handleShowInfo = () => setShowInfo(!showInfo);
+  let counter = 1;
 
   return (
     <div className="table-wrapper overflow-x-scroll lg:overflow-x-auto h-full relative">
@@ -24,48 +25,61 @@ const StudentTable = ({ setShowInfo, showInfo }) => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td colSpan={7}>
-              <TableLoader count="20" cols="4" />
-            </td>
-          </tr>
-          <tr>
-            <td colSpan={7}>
-              <NoData />
-            </td>
-          </tr>
-          <tr onDoubleClick={handleShowInfo}>
-            <td>1</td>
-            <td>Robert Fox</td>
-            <td>Science 4</td>
-            <td>7</td>
-            <td>Male</td>
-            <td>robert.fox@gmail.com</td>
-            <td className="table-action">
-              <ul>
-                <li>
-                  <button className="tooltip" data-tooltip="Edit">
-                    <LiaEdit />
-                  </button>
-                </li>
-                <li>
-                  <button className="tooltip" data-tooltip="Archive">
-                    <PiArchive />
-                  </button>
-                </li>
-                <li>
-                  <button className="tooltip" data-tooltip="Restore">
-                    <LiaHistorySolid />
-                  </button>
-                </li>
-                <li>
-                  <button className="tooltip" data-tooltip="Delete">
-                    <LiaTrashAltSolid />
-                  </button>
-                </li>
-              </ul>
-            </td>
-          </tr>
+          {isLoading ? (
+            <tr>
+              <td colSpan={7}>
+                <TableLoader count="20" cols="4" />
+              </td>
+            </tr>
+          ) : student.data.length === 0 ? (
+            <tr>
+              <td colSpan={7}>
+                <NoData />
+              </td>
+            </tr>
+          ) : (
+            student?.data.map((item, key) => (
+              <tr onDoubleClick={handleShowInfo} key={key}>
+                <td>{counter++}</td>
+                <td>{item.student_name}</td>
+                <td>{item.student_class}</td>
+                <td>{item.student_age}</td>
+                <td>{item.student_gender}</td>
+                <td>{item.student_email}</td>
+                <td className="table-action">
+                  <ul>
+                    {item.student_is_active ? (
+                      <>
+                        <li>
+                          <button className="tooltip" data-tooltip="Edit">
+                            <LiaEdit />
+                          </button>
+                        </li>
+                        <li>
+                          <button className="tooltip" data-tooltip="Archive">
+                            <PiArchive />
+                          </button>
+                        </li>
+                      </>
+                    ) : (
+                      <>
+                        <li>
+                          <button className="tooltip" data-tooltip="Restore">
+                            <LiaHistorySolid />
+                          </button>
+                        </li>
+                        <li>
+                          <button className="tooltip" data-tooltip="Delete">
+                            <LiaTrashAltSolid />
+                          </button>
+                        </li>
+                      </>
+                    )}
+                  </ul>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </div>
