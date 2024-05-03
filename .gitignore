@@ -31,3 +31,7 @@ tailwindcss-windows-x64.exe
 mini.bat
 watch.bat
 run.bat
+
+# ignore rest stuff
+#rest/*/*
+apiKey.php

@@ -13,13 +13,13 @@ const ModalAddStaff = ({ setAddStaff, showAddStaff }) => {
     staff_name: "",
     staff_class: "",
     staff_age: "",
-    staff_email: "",
+    // staff_email: "",
   };
   const yupSchema = object({
     staff_name: string().required("Name Required*"),
     staff_class: string().required("Class Required*"),
     staff_age: number().required("Age Required*"),
-    staff_email: string().required("Email Required*").email("Invalid Email"),
+    // staff_email: string().required("Email Required*").email("Invalid Email"),
   })
   return (
     <ModalWrapper>
@@ -49,9 +49,9 @@ const ModalAddStaff = ({ setAddStaff, showAddStaff }) => {
                 <div className="input-wrap">
                   <InputText label="Class" type="text" name="staff_class" />
                 </div>
-                <div className="input-wrap">
+                {/* <div className="input-wrap">
                   <InputText label="Email" type="email" name="staff_email" />
-                </div>
+                </div> */}
                 <div className="input-wrap">
                   {/* <label htmlFor="">Gender</label>
                   <select name="" id="" required>

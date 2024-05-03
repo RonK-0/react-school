@@ -245,8 +245,6 @@
     .ty-a{ @apply top-1/2 -translate-y-1/2 }
     .txy-a{ @apply top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2 }
 
-    .pointer{ @apply cursor-pointer; }
-
     .scrollbar-gutter{
         scrollbar-width: thin;
         scrollbar-gutter: stable;
