@@ -19,7 +19,7 @@ const Staff = () => {
   const [showAddStaff, setAddStaff] = React.useState(false);
   const handleAddStaff = () => setAddStaff(!showAddStaff);
   return (
-    <section className="flex">
+    <section className="flex overflow-x-hidden">
       <Navigation />
       <main className="w-[calc(100%-250px)]">
         <Header />
@@ -71,10 +71,7 @@ const Staff = () => {
         </div>
       </main>
       {showAddStaff && (
-        <ModalAddStaff
-          setAddStaff={setAddStaff}
-          showAddStaff={showAddStaff}
-        />
+        <ModalAddStaff setAddStaff={setAddStaff} showAddStaff={showAddStaff} />
       )}
       {/* <ModalError position="center"/> */}
       {/* <ModalValidate position="center"/> */}

@@ -3,14 +3,17 @@ import { LiaTimesSolid } from "react-icons/lia";
 import ModalWrapper from "../../../../partials/modals/ModalWrapper";
 import SpinnerButton from "../../../../partials/spinners/SpinnerButton";
 
-const ModalAddTeacher = ({setAddTeacher, showAddTeacher}) => {
+const ModalAddTeacher = ({ setAddTeacher, showAddTeacher }) => {
   const handleShowAddTeacher = () => setAddTeacher(!showAddTeacher);
   return (
     <ModalWrapper>
       <div className="main-modal w-[300px] bg-secondary text-content h-full">
         <div className="modal-header p-4 relative">
           <h2>New Teacher</h2>
-          <button className="absolute top-[25px] right-4" onClick={handleShowAddTeacher}>
+          <button
+            className="absolute top-[25px] right-4"
+            onClick={handleShowAddTeacher}
+          >
             <LiaTimesSolid />
           </button>
         </div>
@@ -42,11 +45,12 @@ const ModalAddTeacher = ({setAddTeacher, showAddTeacher}) => {
               </div>
             </div>
             <div className="form-action">
-              <button className="btn btn-form btn--accent">
-                {" "}
+              <button className="btn btn-form btn--accent" type="submit">
                 Add <SpinnerButton />
               </button>
-              <button className="btn btn-form btn--cancel"> Cancel </button>
+              <button className="btn btn-form btn--cancel" type="button">
+                Cancel
+              </button>
             </div>
           </form>
         </div>

@@ -19,7 +19,7 @@ const Student = () => {
   const [showAddStudent, setAddStudent] = React.useState(false);
   const handleAddStudent = () => setAddStudent(!showAddStudent);
   return (
-    <section className="flex">
+    <section className="flex overflow-x-hidden">
       <Navigation />
       <main className="w-[calc(100%-250px)]">
         <Header />
@@ -55,7 +55,11 @@ const Student = () => {
                   <Link to="/database/staff">Staff</Link>
                 </li>
               </ul>
-              <button type="button" className="btn btn--accent" onClick={handleAddStudent}>
+              <button
+                type="button"
+                className="btn btn--accent"
+                onClick={handleAddStudent}
+              >
                 <FiPlus /> New
               </button>
             </div>
@@ -66,7 +70,12 @@ const Student = () => {
           <DatabaseInformation showInfo={showInfo} />
         </div>
       </main>
-      {showAddStudent && <ModalAddStudent setAddStudent={setAddStudent} showAddStudent={showAddStudent}/>}
+      {showAddStudent && (
+        <ModalAddStudent
+          setAddStudent={setAddStudent}
+          showAddStudent={showAddStudent}
+        />
+      )}
       {/* <ModalError position="center"/> */}
       {/* <ModalValidate position="center"/> */}
       {/* <ModalConfirm position="center"/> */}

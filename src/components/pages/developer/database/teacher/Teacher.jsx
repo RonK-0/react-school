@@ -19,7 +19,7 @@ const Teacher = () => {
   const [showAddTeacher, setAddTeacher] = React.useState(false);
   const handleShowAddTeacher = () => setAddTeacher(!showAddTeacher);
   return (
-    <section className="flex">
+    <section className="flex overflow-x-hidden">
       <Navigation />
       <main className="w-[calc(100%-250px)]">
         <Header />
@@ -55,7 +55,11 @@ const Teacher = () => {
                   <Link to="/database/staff">Staff</Link>
                 </li>
               </ul>
-              <button type="button" className="btn btn--accent" onClick={handleShowAddTeacher}>
+              <button
+                type="button"
+                className="btn btn--accent"
+                onClick={handleShowAddTeacher}
+              >
                 <FiPlus /> New
               </button>
             </div>

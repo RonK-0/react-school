@@ -10,7 +10,10 @@ const ModalAddStudent = ({ setAddStudent, showAddStudent }) => {
       <div className="main-modal w-[300px] bg-secondary text-content h-full">
         <div className="modal-header p-4 relative">
           <h2>New Student</h2>
-          <button className="absolute top-[25px] right-4" onClick={handleAddStudent}>
+          <button
+            className="absolute top-[25px] right-4"
+            onClick={handleAddStudent}
+          >
             <LiaTimesSolid />
           </button>
         </div>
@@ -42,11 +45,12 @@ const ModalAddStudent = ({ setAddStudent, showAddStudent }) => {
               </div>
             </div>
             <div className="form-action">
-              <button className="btn btn-form btn--accent">
-                {" "}
+              <button className="btn btn-form btn--accent" type="submit">
                 Add <SpinnerButton />
               </button>
-              <button className="btn btn-form btn--cancel"> Cancel </button>
+              <button className="btn btn-form btn--cancel" type="button">
+                Cancel
+              </button>
             </div>
           </form>
         </div>

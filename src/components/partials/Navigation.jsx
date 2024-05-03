@@ -4,6 +4,8 @@ import { Link } from 'react-router-dom'
 import { FaTiktok } from "react-icons/fa";
 import { AiOutlineMessage } from "react-icons/ai";
 import { HiOutlineCalendar, HiOutlineDocument  } from "react-icons/hi";
+import { CiSettings } from "react-icons/ci";
+import { LiaSignalSolid } from "react-icons/lia";
 import Logo from "./svg/Logo";
 
 const Navigation = () => {
@@ -19,8 +21,8 @@ const Navigation = () => {
             <li className='nav-link'><Link to={'#'}><AiOutlineMessage /> Messenger</Link></li>
             <li className='nav-link'><Link to={'#'}><HiOutlineCalendar /> Calendar</Link></li>
             <li className='nav-link'><Link to={'#'}><HiOutlineDocument /> Database</Link></li>
-            <li className='nav-link'><Link to={'#'}><FaTiktok /> Attendance</Link></li>
-            <li className='nav-link'><Link to={'#'}><FaTiktok /> Settings</Link></li>
+            <li className='nav-link'><Link to={'#'}><LiaSignalSolid /> Attendance</Link></li>
+            <li className='nav-link'><Link to={'#'}><CiSettings /> Settings</Link></li>
         </ul>
     </aside>
   )
