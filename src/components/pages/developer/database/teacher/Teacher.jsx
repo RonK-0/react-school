@@ -4,13 +4,14 @@ import Navigation from "../../../../partials/Navigation";
 import Header from "../../../../partials/Header";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import ModalAddTeacher from "./ModalAddTeahcer";
+import TeacherTable from "./TeacherTable";
 import DatabaseInformation from "../DatabaseInformation";
+import useQueryData from "../../../../custom-hook/useQueryData";
 import ModalError from "../../../../partials/modals/ModalError";
 import ModalValidate from "../../../../partials/modals/ModalValidate";
 import ModalConfirm from "../../../../partials/modals/ModalConfirm";
 import SpinnerWindow from "../../../../partials/spinners/SpinnerWindow";
-import ModalAddTeacher from "./ModalAddTeahcer";
-import TeacherTable from "./TeacherTable";
 
 const Teacher = () => {
   const [showInfo, setShowInfo] = React.useState(false);
@@ -18,6 +19,17 @@ const Teacher = () => {
 
   const [showAddTeacher, setAddTeacher] = React.useState(false);
   const handleShowAddTeacher = () => setAddTeacher(!showAddTeacher);
+
+  const {
+    isLoading,
+    isFetching,
+    error,
+    data: teacher,
+  } = useQueryData(
+    "/v1/teacher", // endpoint
+    "get", // method
+    "teacher" // key
+  );
   return (
     <section className="flex overflow-x-hidden">
       <Navigation />
@@ -64,7 +76,12 @@ const Teacher = () => {
               </button>
             </div>
 
-            <TeacherTable setShowInfo={setShowInfo} showInfo={showInfo} />
+            <TeacherTable
+              setShowInfo={setShowInfo}
+              showInfo={showInfo}
+              isLoading={isLoading}
+              teacher={teacher}
+            />
           </div>
 
           <DatabaseInformation showInfo={showInfo} />

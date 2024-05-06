@@ -4,13 +4,14 @@ import Navigation from "../../../../partials/Navigation";
 import Header from "../../../../partials/Header";
 import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
+import ModalAddStaff from "./ModalAddStaff";
+import StaffTable from "./StaffTable";
 import DatabaseInformation from "../DatabaseInformation";
+import useQueryData from "../../../../custom-hook/useQueryData";
 import ModalError from "../../../../partials/modals/ModalError";
 import ModalValidate from "../../../../partials/modals/ModalValidate";
 import ModalConfirm from "../../../../partials/modals/ModalConfirm";
 import SpinnerWindow from "../../../../partials/spinners/SpinnerWindow";
-import StaffTable from "./StaffTable";
-import ModalAddStaff from "./ModalAddStaff";
 
 const Staff = () => {
   const [showInfo, setShowInfo] = React.useState(false);
@@ -18,6 +19,17 @@ const Staff = () => {
 
   const [showAddStaff, setAddStaff] = React.useState(false);
   const handleAddStaff = () => setAddStaff(!showAddStaff);
+
+  const {
+    isLoading,
+    isFetching,
+    error,
+    data: staff,
+  } = useQueryData(
+    "/v1/staff", // endpoint
+    "get", // method
+    "staff" // key
+  );
   return (
     <section className="flex overflow-x-hidden">
       <Navigation />
@@ -64,7 +76,12 @@ const Staff = () => {
               </button>
             </div>
 
-            <StaffTable setShowInfo={setShowInfo} showInfo={showInfo} />
+            <StaffTable
+              setShowInfo={setShowInfo}
+              showInfo={showInfo}
+              isLoading={isLoading}
+              staff={staff}
+            />
           </div>
 
           <DatabaseInformation showInfo={showInfo} />

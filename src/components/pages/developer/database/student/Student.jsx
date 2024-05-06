@@ -7,11 +7,11 @@ import { Link } from "react-router-dom";
 import ModalAddStudent from "./ModalAddStudent";
 import StudentTable from "./StudentTable";
 import DatabaseInformation from "../DatabaseInformation";
+import useQueryData from "../../../../custom-hook/useQueryData";
 import ModalError from "../../../../partials/modals/ModalError";
 import ModalValidate from "../../../../partials/modals/ModalValidate";
 import ModalConfirm from "../../../../partials/modals/ModalConfirm";
 import SpinnerWindow from "../../../../partials/spinners/SpinnerWindow";
-import useQueryData from "../../../../custom-hook/useQueryData";
 
 const Student = () => {
   const [showInfo, setShowInfo] = React.useState(false);
@@ -30,7 +30,6 @@ const Student = () => {
     "get", // method
     "student" // key
   );
-  // console.log(student);
   return (
     <section className="flex overflow-x-hidden">
       <Navigation />
@@ -77,7 +76,12 @@ const Student = () => {
               </button>
             </div>
 
-            <StudentTable setShowInfo={setShowInfo} showInfo={showInfo} isLoading={isLoading} student={student} />
+            <StudentTable
+              setShowInfo={setShowInfo}
+              showInfo={showInfo}
+              isLoading={isLoading}
+              student={student}
+            />
           </div>
 
           <DatabaseInformation showInfo={showInfo} />
