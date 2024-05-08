@@ -12,13 +12,21 @@ import ModalError from "../../../../partials/modals/ModalError";
 import ModalValidate from "../../../../partials/modals/ModalValidate";
 import ModalConfirm from "../../../../partials/modals/ModalConfirm";
 import SpinnerWindow from "../../../../partials/spinners/SpinnerWindow";
+import Toast from "../../../../partials/Toast";
 
 const Student = () => {
   const [showInfo, setShowInfo] = React.useState(false);
   const handleShowInfo = () => setShowInfo(!showInfo);
 
-  const [showAddStudent, setAddStudent] = React.useState(false);
-  const handleAddStudent = () => setAddStudent(!showAddStudent);
+  // const [showAddStudent, setAddStudent] = React.useState(false);
+  // const handleAddStudent = () => {
+  //   setAddStudent(!showAddStudent)
+  // };
+
+  const [isAdd, setIsAdd] = React.useState(false);
+  const handleAdd = () => {
+    setIsAdd(true), setItemEdit(null);
+  };
 
   const {
     isLoading,
@@ -30,6 +38,13 @@ const Student = () => {
     "get", // method
     "student" // key
   );
+
+  const [isSuccess, setIsSuccess] = React.useState(false);
+  const [message, setMessage] = React.useState("");
+  const [itemEdit, setItemEdit] = React.useState(null);
+
+  const [isError, setIsError] = React.useState(false);
+
   return (
     <section className="flex overflow-x-hidden">
       <Navigation />
@@ -70,10 +85,17 @@ const Student = () => {
               <button
                 type="button"
                 className="btn btn--accent"
-                onClick={handleAddStudent}
+                onClick={handleAdd}
               >
                 <FiPlus /> New
               </button>
+              {/* <button
+                type="button"
+                className="btn btn--accent"
+                onClick={handleAddStudent}
+              >
+                <FiPlus /> New
+              </button> */}
             </div>
 
             <StudentTable
@@ -81,18 +103,36 @@ const Student = () => {
               showInfo={showInfo}
               isLoading={isLoading}
               student={student}
+              setItemEdit={setItemEdit}
+              setIsAdd={setIsAdd}
+
+              setIsSuccess={setIsSuccess}
+              setMessage={setMessage}
+              setIsError={setIsError}
             />
           </div>
 
           <DatabaseInformation showInfo={showInfo} />
         </div>
       </main>
-      {showAddStudent && (
+      {/* {showAddStudent && (
         <ModalAddStudent
           setAddStudent={setAddStudent}
           showAddStudent={showAddStudent}
         />
+      )} */}
+      {isAdd && (
+        <ModalAddStudent
+          setIsAdd={setIsAdd}
+          setIsSuccess={setIsSuccess}
+          setMessage={setMessage}
+          itemEdit={itemEdit}
+          
+          setIsError={setIsError}
+        />
       )}
+      {isSuccess && <Toast setIsSuccess={setIsSuccess} message={message} setIsError={setIsError} />}
+      {isError && <Toast setIsSuccess={setIsSuccess} message={message} setIsError={setIsError} />}
       {/* <ModalError position="center"/> */}
       {/* <ModalValidate position="center"/> */}
       {/* <ModalConfirm position="center"/> */}
