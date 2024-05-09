@@ -13,6 +13,7 @@ Header set Access-Control-Allow-Origin *
 RewriteRule ^student$ controllers/student/student.php [L]
 RewriteRule ^student/([0-9]+)$ controllers/student/student.php?studentid=$1 [L]
 RewriteRule ^student/active/([0-9]+)$ controllers/student/active.php?studentid=$1 [L]
+RewriteRule ^student/search$ controllers/student/search.php [L]
 
 RewriteRule ^teacher$ controllers/teacher/teacher.php [L]
 RewriteRule ^teacher/([0-9]+)$ controllers/teacher/teacher.php?teacherid=$1 [L]

@@ -12,18 +12,16 @@ import {
 import { Form, Formik } from "formik";
 // import * as Yup from 'yup'
 import { object, string, number } from "yup";
-
-const ModalAddStudent = ({
+import { StoreContext } from "../../../../../store/StoreContext";
+import {
   setIsAdd,
   setMessage,
-  setIsSuccess,
-  itemEdit,
-  setIsError,
-}) => {
-  // const ModalAddStudent = ({ setAddStudent, showAddStudent }) => {
-  // const handleAddStudent = () => setAddStudent(!showAddStudent);
+  setSuccess,
+} from "../../../../../store/StoreAction";
 
-  const handleClose = () => setIsAdd(false);
+const ModalAddStudent = ({ itemEdit }) => {
+  const { dispatch } = React.useContext(StoreContext);
+  const handleClose = () => dispatch(setIsAdd(false));
 
   const queryClient = useQueryClient();
   const mutation = useMutation({
@@ -39,12 +37,12 @@ const ModalAddStudent = ({
     onSuccess: (data) => {
       queryClient.invalidateQueries({ queryKey: ["student"] });
       if (data.success) {
-        setIsAdd(false);
-        setIsSuccess(true);
-        setMessage(`Successfuly updated.`);
+        dispatch(setIsAdd(false));
+        dispatch(setSuccess(true));
+        dispatch(setMessage(`Successfuly updated.`));
       } else {
         setIsError(true);
-        setMessage(`Failed updating database.`);
+        dispatch(setMessage(`Failed updating database.`));
       }
     },
   });
@@ -97,20 +95,13 @@ const ModalAddStudent = ({
                 </div>
                 <div className="input-wrap">
                   <InputSelect label="Gender" name="student_gender">
-                    <option value="" hidden>Select</option>
+                    <option value="" hidden>
+                      Select
+                    </option>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                   </InputSelect>
-                  {/* <label htmlFor="student_gender">Gender</label>
-                  <select name="student_gender" id="" required>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                  </select> *
-                  <small className="error-msg">Required*</small> * */}
                 </div>
-                {/* <div className="input-wrap">
-                  <InputText label="Gender" type="text" name="student_gender" />
-                </div> */}
                 <div className="input-wrap">
                   <InputText label="Email" type="text" name="student_email" />
                 </div>
@@ -118,7 +109,11 @@ const ModalAddStudent = ({
                   <InputText label="Age" type="text" name="student_age" />
                 </div>
                 <div className="input-wrap">
-                  <InputTextArea label="About" type="text" name="student_about" />
+                  <InputTextArea
+                    label="About"
+                    type="text"
+                    name="student_about"
+                  />
                 </div>
               </div>
               <div className="form-action">

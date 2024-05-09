@@ -3,21 +3,18 @@ import ModalWrapper from "./ModalWrapper";
 import { LiaTimesSolid, LiaTrashAltSolid } from "react-icons/lia";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { queryData } from "../../helpers/queryData";
-
-const ModalDelete = ({
-  position,
+import { StoreContext } from "../../../store/StoreContext";
+import {
   setIsDelete,
-  queryKey,
-  endpoint,
-
-  setIsSuccess,
   setMessage,
-  setIsError,
-}) => {
-  const handleClose = () => setIsDelete(false);
+  setSuccess,
+  setError,
+} from "../../../store/StoreAction";
 
+const ModalDelete = ({ position, queryKey, endpoint }) => {
+  const { dispatch } = React.useContext(StoreContext);
+  const handleClose = () => dispatch(setIsDelete(false));
   const queryClient = useQueryClient();
-
   const mutation = useMutation({
     mutationFn: (values) => queryData(endpoint, "delete", values),
     onSuccess: (data) => {
@@ -25,12 +22,12 @@ const ModalDelete = ({
       queryClient.invalidateQueries({ queryKey: [queryKey] });
 
       if (data.success) {
-        setIsDelete(false);
-        setIsSuccess(true);
-        setMessage("Record Successfully Deleted");
+        dispatch(setIsDelete(false));
+        dispatch(setSuccess(true));
+        dispatch(setMessage("Record Successfully Deleted"));
       } else {
-        setIsError(true)
-        setMessage('Delete failed!')
+        dispatch(setError(true));
+        dispatch(setMessage("Delete failed!"));
       }
     },
   });

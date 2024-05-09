@@ -1,13 +1,17 @@
 import React from "react";
 import { FaTimes } from "react-icons/fa";
 import { LiaEnvelope, LiaKeySolid } from "react-icons/lia";
+import { StoreContext } from "../../../../store/StoreContext";
+import { setIsShow } from "../../../../store/StoreAction";
 
-const DatabaseInformation = ({ showInfo, setShowInfo, studentInfo }) => {
-  const handleClose = () => setShowInfo(false);
+const DatabaseInformation = ({  }) => {
+  const { dispatch, store } = React.useContext(StoreContext);
+  const handleClose = () => dispatch(setIsShow(false));
+  const studentInfo = store.info;
   return (
     <div
-      className={`information transition-all duration-200 fixed top-[72px] w-[415px] border-l border-line h-[calc(100vh-75px)] overflow-hidden ${
-        showInfo ? "right-0" : "-right-full"
+      className={`information bg-primary transition-all duration-200 fixed top-[72px] w-[415px] border-l border-line h-[calc(100vh-75px)] overflow-hidden ${
+        store.isShow ? "right-0" : "-right-full"
       }`}
     >
       <button

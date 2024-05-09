@@ -6,58 +6,59 @@ import NoData from "../../../../partials/NoData";
 import SpinnerFetching from "../../../../partials/spinners/SpinnerFetching";
 import ModalConfirm from "../../../../partials/modals/ModalConfirm";
 import ModalDelete from "../../../../partials/modals/ModalDelete";
-
-const StudentTable = ({
-  setShowInfo,
-  showInfo,
-  isLoading,
-  student,
-  setItemEdit,
+import { StoreContext } from "../../../../../store/StoreContext";
+import {
+  setInfo,
+  setIsActive,
   setIsAdd,
-  setStudentInfo,
-  setIsSuccess,
-  setMessage,
-  setIsError,
-}) => {
-  
+  setIsArchive,
+  setIsDelete,
+  setIsShow,
+} from "../../../../../store/StoreAction";
 
-  const handleShowInfo = (item) => {
-    setShowInfo(!showInfo);
-    setStudentInfo(item);
-  };
+const StudentTable = ({ isLoading, student, setItemEdit }) => {
+  const { dispatch, store } = React.useContext(StoreContext);
 
   let counter = 1;
+  // const [isActive, setIsActive] = React.useState(false);
+  const [id, setId] = React.useState("");
+  // const [isArchiving, setIsArchiving] = React.useState(0);
+  // const [isDelete, setIsDelete] = React.useState(false);
+
+  const handleShowInfo = (item) => {
+    dispatch(setIsShow(true));
+    dispatch(setInfo(item));
+  };
 
   const handleEdit = (item) => {
     setItemEdit(item);
-    setIsAdd(true);
+    dispatch(setIsAdd(true));
   };
 
-  const [isActive, setIsActive] = React.useState(false);
-  const [id, setId] = React.useState("");
-  const [isArchiving, setIsArchiving] = React.useState(0);
-  const [isDelete, setIsDelete] = React.useState(false);
-
   const handleArchive = (item) => {
-    setIsActive(true);
+    dispatch(setIsActive(0));
     setId(item.student_aid);
-    setIsArchiving(0);
+    dispatch(setIsArchive(true));
   };
 
   const handleRestore = (item) => {
-    setIsActive(true);
+    dispatch(setIsActive(0));
     setId(item.student_aid);
-    setIsArchiving(1);
+    dispatch(setIsArchive(false));
   };
 
   const handleDelete = (item) => {
-    setIsDelete(true);
+    dispatch(setIsDelete(true));
     setId(item.student_aid);
   };
 
   return (
     <>
-      <div className={`table-wrapper overflow-x-scroll lg:overflow-x-auto h-full pb-64 fixed top-56 left-[250px] ${showInfo ? "w-[calc(100%-670px)]" : "w-[calc(100%-260px)]"}`}>
+      <div
+        className={`table-wrapper overflow-x-scroll lg:overflow-x-auto h-full pb-64 fixed top-56 left-[270px] ${
+          store.isShow ? "w-[calc(100%-690px)]" : "w-[calc(100%-270px)]"
+        }`}
+      >
         {/* <SpinnerFetching /> */}
         <table>
           <thead>
@@ -146,28 +147,18 @@ const StudentTable = ({
           </tbody>
         </table>
       </div>
-      {isActive && (
+      {store.isActive && (
         <ModalConfirm
           position={"center"}
-          setIsActive={setIsActive}
-          isArchiving={isArchiving}
           queryKey={"student"}
           endpoint={`/v1/student/active/${id}`}
-          setIsSuccess={setIsSuccess}
-          setMessage={setMessage}
-          setIsError={setIsError}
         />
       )}
-      {isDelete && (
+      {store.isDelete && (
         <ModalDelete
           position={"center"}
-          setIsDelete={setIsDelete}
-          handleDelete={handleDelete}
           queryKey={"student"}
           endpoint={`/v1/student/${id}`}
-          setIsSuccess={setIsSuccess}
-          setMessage={setMessage}
-          setIsError={setIsError}
         />
       )}
     </>

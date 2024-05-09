@@ -13,6 +13,8 @@ Class Student {
     public $student_datetime;
     public $lastInsertedId;
 
+    public $student_search;
+
     public $connection;
     public $tblStudent;
 
@@ -136,6 +138,36 @@ Class Student {
                 "student_is_active" => $this->student_is_active,
                 "student_datetime" => $this->student_datetime,
                 "student_aid" => $this->student_aid,
+            ]);
+        } catch (PDOException $ex) {
+            $query = false;
+        }
+        return $query;
+    }
+
+    public function search()
+    {
+        // try {
+        //     $sql = "select * ";
+        //     $sql .= "from {$this->tblStudent} ";
+        //     $sql .= "where student_name like :student_name ";
+        //     $sql .= "order by student_is_active desc, ";
+        //     $sql .= "student_name asc ";
+        //     $query = $this->connection->prepare($sql);
+        //     $query->execute([
+        //         "student_name" => "%{$this->student_search}%",
+        //     ]);
+
+        try {
+            $sql = "select ";
+            $sql .= "* ";
+            $sql .= "from {$this->tblStudent} ";
+            $sql .= "where student_name like :student_name ";
+            $sql .= "order by student_is_active desc, ";
+            $sql .= "student_name asc ";
+            $query = $this->connection->prepare($sql);
+            $query->execute([
+                "student_name" => "%{$this->student_search}%",
             ]);
         } catch (PDOException $ex) {
             $query = false;

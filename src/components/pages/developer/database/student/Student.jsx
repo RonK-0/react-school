@@ -1,32 +1,57 @@
-import { FiPlus } from "react-icons/fi";
 import React from "react";
 import Navigation from "../../../../partials/Navigation";
 import Header from "../../../../partials/Header";
-import { CiSearch } from "react-icons/ci";
 import { Link } from "react-router-dom";
 import ModalAddStudent from "./ModalAddStudent";
 import StudentTable from "./StudentTable";
 import DatabaseInformation from "../DatabaseInformation";
 import useQueryData from "../../../../custom-hook/useQueryData";
-import ModalError from "../../../../partials/modals/ModalError";
-import ModalValidate from "../../../../partials/modals/ModalValidate";
-import ModalConfirm from "../../../../partials/modals/ModalConfirm";
 import SpinnerWindow from "../../../../partials/spinners/SpinnerWindow";
 import Toast from "../../../../partials/Toast";
+import { FiPlus } from "react-icons/fi";
+import Searchbar from "./Searchbar";
+import { StoreContext } from "../../../../../store/StoreContext";
+import { setIsAdd } from "../../../../../store/StoreAction";
 
 const Student = () => {
-  const [showInfo, setShowInfo] = React.useState(false);
-  const handleShowInfo = () => setShowInfo(!showInfo);
+  const { store, dispatch } = React.useContext(StoreContext);
 
-  // const [showAddStudent, setAddStudent] = React.useState(false);
-  // const handleAddStudent = () => {
-  //   setAddStudent(!showAddStudent)
-  // };
+  // const [showInfo, setShowInfo] = React.useState(false);
+  // const handleShowInfo = () => setShowInfo(!showInfo);
 
-  const [isAdd, setIsAdd] = React.useState(false);
+  // const [isAdd, setIsAdd] = React.useState(false);
   const handleAdd = () => {
-    setIsAdd(true), setItemEdit(null);
+    dispatch(setIsAdd(true)), setItemEdit(null);
   };
+
+  // const [isSuccess, setIsSuccess] = React.useState(false);
+  // const [message, setMessage] = React.useState("");
+  const [itemEdit, setItemEdit] = React.useState(null);
+
+  // const [isError, setIsError] = React.useState(false);
+
+  // const [studentInfo, setStudentInfo] = React.useState(null);
+
+  const [isSearch, setIsSeach] = React.useState(false);
+  const [keyword, setKeyword] = React.useState("");
+
+  // const {
+  //   isLoading,
+  //   isFetching,
+  //   error,
+  //   data: student,
+  // } = useQueryData(
+  //   // "/v1/student", // endpoint
+  //   // "get", // method
+  //   // "student" // key
+
+  //   isSearch ? "/v1/student/search" : "/v1/student", // endpoint
+  //   isSearch ? "post" : "get", // method
+  //   ["student", isSearch], // key
+  //   {
+  //       searchValue: keyword
+  //   }
+  // );
 
   const {
     isLoading,
@@ -34,18 +59,15 @@ const Student = () => {
     error,
     data: student,
   } = useQueryData(
-    "/v1/student", // endpoint
-    "get", // method
-    "student" // key
+    isSearch ? "/v1/student/search" : "/v1/student", // endpoint
+    isSearch ? "post" : "get", // method
+    // ["student", isSearch], // key
+    // {
+    //   searchValue: keyword,
+    // }
+    "student",
+    { searchValue: keyword }
   );
-
-  const [isSuccess, setIsSuccess] = React.useState(false);
-  const [message, setMessage] = React.useState("");
-  const [itemEdit, setItemEdit] = React.useState(null);
-
-  const [isError, setIsError] = React.useState(false);
-
-  const [studentInfo, setStudentInfo] = React.useState(null);
 
   return (
     <section className="flex relative left-[250px]">
@@ -55,22 +77,17 @@ const Student = () => {
         <div className="flex relative">
           <div
             className={`main-wrapper transition-all px-4 py-3 ${
-              showInfo ? "w-3/4" : "w-full"
+              store.isShow ? "w-3/4" : "w-full"
             }`}
           >
-            <div className={`fixed bg-primary ${showInfo ? "w-[calc(100%-700px)]" : "w-[calc(100%-300px)]"}`}>
+            <div
+              className={`fixed bg-primary ${
+                store.isShow ? "w-[calc(100%-700px)]" : "w-[calc(100%-300px)]"
+              }`}
+            >
               <div className="flex justify-between items-center">
                 <h1 className="leading-none mb-0">Student Database</h1>
-                <form action="" className="relative">
-                  <input
-                    type="text"
-                    name=""
-                    id=""
-                    placeholder="Search Student"
-                    className="p-1 px-3 pl-10 bg-secondary border border-stone-800 rounded-md placeholder:text-white placeholder:opacity-20 text-content"
-                  />
-                  <CiSearch className="absolute ty-a left-2 z-[1] text-white text-2xl opacity-20" />
-                </form>
+                <Searchbar setIsSeach={setIsSeach} setKeyword={setKeyword} />
               </div>
 
               <div className="tab flex between-center mt-8 border-b border-line mb-8">
@@ -92,70 +109,24 @@ const Student = () => {
                 >
                   <FiPlus /> New
                 </button>
-                {/* <button
-                type="button"
-                className="btn btn--accent"
-                onClick={handleAddStudent}
-              >
-                <FiPlus /> New
-              </button> */}
               </div>
             </div>
 
             <StudentTable
-              setShowInfo={setShowInfo}
-              showInfo={showInfo}
               isLoading={isLoading}
               student={student}
               setItemEdit={setItemEdit}
-              setIsAdd={setIsAdd}
-              setStudentInfo={setStudentInfo}
-              setIsSuccess={setIsSuccess}
-              setMessage={setMessage}
-              setIsError={setIsError}
             />
           </div>
 
-          <DatabaseInformation
-            showInfo={showInfo}
-            setShowInfo={setShowInfo}
-            studentInfo={studentInfo}
-          />
+          <DatabaseInformation />
         </div>
       </main>
-      {/* {showAddStudent && (
-        <ModalAddStudent
-          setAddStudent={setAddStudent}
-          showAddStudent={showAddStudent}
-        />
-      )} */}
-      {isAdd && (
-        <ModalAddStudent
-          setIsAdd={setIsAdd}
-          setIsSuccess={setIsSuccess}
-          setMessage={setMessage}
-          itemEdit={itemEdit}
-          setIsError={setIsError}
-        />
-      )}
-      {isSuccess && (
-        <Toast
-          setIsSuccess={setIsSuccess}
-          message={message}
-          setIsError={setIsError}
-        />
-      )}
-      {isError && (
-        <Toast
-          setIsSuccess={setIsSuccess}
-          message={message}
-          setIsError={setIsError}
-        />
-      )}
+      {store.isAdd && <ModalAddStudent itemEdit={itemEdit} />}
+      {store.success && <Toast />}
+      {store.error && <Toast />}
       {/* <ModalError position="center"/> */}
       {/* <ModalValidate position="center"/> */}
-      {/* <ModalConfirm position="center"/> */}
-      {/* <ModalConfirm position="center"/> */}
       {/* <SpinnerWindow/> */}
     </section>
   );

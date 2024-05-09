@@ -4,19 +4,23 @@ import { LiaTimesSolid } from "react-icons/lia";
 import { PiArchive } from "react-icons/pi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { queryData } from "../../helpers/queryData";
+import { StoreContext } from "../../../store/StoreContext";
+import {
+  setMessage,
+  setSuccess,
+  setError,
+  setIsActive,
+} from "../../../store/StoreAction";
 
 const ModalConfirm = ({
   position,
-  setIsActive,
   queryKey,
   endpoint,
-  isArchiving,
-
-  setIsSuccess,
-  setMessage,
-  setIsError
 }) => {
-  const handleClose = () => setIsActive(false);
+  const { dispatch, store } = React.useContext(StoreContext);
+  const handleClose = () => dispatch(setIsActive(1));
+
+  const isArchiving = store.isArchive;
 
   const queryClient = useQueryClient();
   const mutation = useMutation({
@@ -26,14 +30,15 @@ const ModalConfirm = ({
       queryClient.invalidateQueries({ queryKey: [queryKey] });
 
       if (data.success) {
-        setIsActive(false);
-        setIsSuccess(true);
-        setMessage(
+        dispatch(setIsActive(1));
+        dispatch(setSuccess(true));
+        dispatch(setMessage(
           `Record successfully ${isArchiving ? "Restored" : "Archived"}.`
-        );
+        ));
       } else {
-        setIsError(true)
-        setMessage(data.error);
+        dispatch(setError(true));
+        dispatch(setMessage(data.error));
+        console.log(data.error);
       }
     },
   });
@@ -58,20 +63,16 @@ const ModalConfirm = ({
               <PiArchive className="text-4xl text-warning mb-3" />
               <div>
                 <h2 className="mb-2">
-                  {isArchiving === 0
+                  {isArchiving === true
                     ? "Archive "
-                    : isArchiving === 1
-                    ? "Restore "
-                    : "[UNSPECIFIED FUNCTION]"}
+                    : "Restore "}
                     Record
                 </h2>
                 <p className="mb-5">
                   Are you sure you want to
-                  {isArchiving === 0
+                  {isArchiving === true
                     ? " archive "
-                    : isArchiving === 1
-                    ? " restore "
-                    : " [UNSPECIFIED FUNCTION] "}
+                    : " restore "}
                   this record?
                 </p>
               </div>

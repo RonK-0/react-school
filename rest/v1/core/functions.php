@@ -348,3 +348,10 @@ function getQueriedData($query)
     $response->send();
     exit;
 }
+// Read search
+function checkSearch($object)
+{
+    $query = $object->search();
+    checkQuery($query, "Empty records. (search core)");
+    return $query;
+}
