@@ -5,6 +5,9 @@ Class Staff {
     public $staff_name;
     public $staff_class;
     public $staff_age;
+    public $staff_gender;
+    public $staff_email;
+    public $staff_about;
     public $staff_is_active;
     public $staff_created;
     public $staff_datetime;
@@ -26,6 +29,7 @@ Class Staff {
             $sql .= "staff_age, ";
             $sql .= "staff_gender, ";
             $sql .= "staff_email, ";
+            $sql .= "staff_about, ";
             $sql .= "staff_is_active, ";
             $sql .= "staff_created, ";
             $sql .= "staff_datetime ";
@@ -35,6 +39,7 @@ Class Staff {
             $sql .= ":staff_age, ";
             $sql .= ":staff_gender, ";
             $sql .= ":staff_email, ";
+            $sql .= ":staff_about, ";
             $sql .= ":staff_is_active, ";
             $sql .= ":staff_created, ";
             $sql .= ":staff_datetime ";
@@ -47,6 +52,7 @@ Class Staff {
                 "staff_class" => $this->staff_class,
                 "staff_gender" => $this->staff_gender,
                 "staff_email" => $this->staff_email,
+                "staff_about" => $this->staff_about,
                 "staff_is_active" => $this->staff_is_active,
                 "staff_created" => $this->staff_created,
                 "staff_datetime" => $this->staff_datetime,
@@ -98,6 +104,7 @@ Class Staff {
             $sql .= "staff_class = :staff_class, ";
             $sql .= "staff_gender = :staff_gender, ";
             $sql .= "staff_email = :staff_email, ";
+            $sql .= "staff_about = :staff_about, ";
             $sql .= "staff_datetime = :staff_datetime ";
             $sql .= "where staff_aid  = :staff_aid ";
             $query = $this->connection->prepare($sql);
@@ -107,6 +114,7 @@ Class Staff {
                 "staff_class" => $this->staff_class,
                 "staff_gender" => $this->staff_gender,
                 "staff_email" => $this->staff_email,
+                "staff_about" => $this->staff_about,
                 "staff_datetime" => $this->staff_datetime,
                 "staff_aid" => $this->staff_aid,
             ]);

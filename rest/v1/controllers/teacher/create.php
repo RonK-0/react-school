@@ -11,6 +11,7 @@ $teacher->teacher_class = checkIndex($data, "teacher_class");
 $teacher->teacher_age = checkIndex($data, "teacher_age");
 $teacher->teacher_gender = checkIndex($data, "teacher_gender");
 $teacher->teacher_email = checkIndex($data, "teacher_email");
+$teacher->teacher_about = checkIndex($data, "teacher_about");
 $teacher->teacher_is_active = 1;
 $teacher->teacher_created = date("Y-m-d H:i:s");
 $teacher->teacher_datetime = date("Y-m-d H:i:s");

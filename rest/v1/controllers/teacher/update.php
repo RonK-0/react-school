@@ -12,6 +12,7 @@ if (array_key_exists("teacherid", $_GET)) {
     $teacher->teacher_age = checkIndex($data, "teacher_age");
     $teacher->teacher_gender = checkIndex($data, "teacher_gender");
     $teacher->teacher_email = checkIndex($data, "teacher_email");
+    $teacher->teacher_about = checkIndex($data, "teacher_about");
     $teacher->teacher_datetime = date("Y-m-d H:i:s");
 
     checkId($teacher->teacher_aid);

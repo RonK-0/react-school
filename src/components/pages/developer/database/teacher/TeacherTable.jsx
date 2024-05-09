@@ -10,7 +10,7 @@ const TeacherTable = ({ setShowInfo, showInfo, isLoading, teacher }) => {
   let counter = 1;
 
   return (
-    <div className="table-wrapper overflow-x-scroll lg:overflow-x-auto h-full relative">
+    <div className={`table-wrapper overflow-x-scroll lg:overflow-x-auto h-full h-full pb-64 fixed top-56 left-[250px] ${showInfo ? "w-[calc(100%-670px)]" : "w-[calc(100%-260px)]"}`}>
       {/* <SpinnerFetching /> */}
       <table>
         <thead>

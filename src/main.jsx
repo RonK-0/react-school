@@ -7,4 +7,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <App />
   </React.StrictMode>,
+
+  // remove or comment strictmode for production to disable react testing mode
 )

@@ -11,6 +11,7 @@ $student->student_class = checkIndex($data, "student_class");
 $student->student_age = checkIndex($data, "student_age");
 $student->student_gender = checkIndex($data, "student_gender");
 $student->student_email = checkIndex($data, "student_email");
+$student->student_about = checkIndex($data, "student_about");
 $student->student_is_active = 1;
 $student->student_created = date("Y-m-d H:i:s");
 $student->student_datetime = date("Y-m-d H:i:s");

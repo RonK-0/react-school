@@ -14,11 +14,18 @@ const StudentTable = ({
   student,
   setItemEdit,
   setIsAdd,
+  setStudentInfo,
   setIsSuccess,
   setMessage,
-  setIsError
+  setIsError,
 }) => {
-  const handleShowInfo = () => setShowInfo(!showInfo);
+  
+
+  const handleShowInfo = (item) => {
+    setShowInfo(!showInfo);
+    setStudentInfo(item);
+  };
+
   let counter = 1;
 
   const handleEdit = (item) => {
@@ -50,7 +57,7 @@ const StudentTable = ({
 
   return (
     <>
-      <div className="table-wrapper overflow-x-scroll lg:overflow-x-auto h-full relative">
+      <div className={`table-wrapper overflow-x-scroll lg:overflow-x-auto h-full pb-64 fixed top-56 left-[250px] ${showInfo ? "w-[calc(100%-670px)]" : "w-[calc(100%-260px)]"}`}>
         {/* <SpinnerFetching /> */}
         <table>
           <thead>
@@ -79,7 +86,7 @@ const StudentTable = ({
               </tr>
             ) : (
               student?.data.map((item, key) => (
-                <tr onDoubleClick={handleShowInfo} key={key}>
+                <tr onDoubleClick={() => handleShowInfo(item)} key={key}>
                   <td>{counter++}</td>
                   <td>{item.student_name}</td>
                   <td>{item.student_class}</td>
@@ -146,7 +153,6 @@ const StudentTable = ({
           isArchiving={isArchiving}
           queryKey={"student"}
           endpoint={`/v1/student/active/${id}`}
-          
           setIsSuccess={setIsSuccess}
           setMessage={setMessage}
           setIsError={setIsError}
@@ -159,7 +165,6 @@ const StudentTable = ({
           handleDelete={handleDelete}
           queryKey={"student"}
           endpoint={`/v1/student/${id}`}
-
           setIsSuccess={setIsSuccess}
           setMessage={setMessage}
           setIsError={setIsError}

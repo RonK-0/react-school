@@ -10,7 +10,7 @@ import Logo from "./svg/Logo";
 
 const Navigation = () => {
   return (
-    <aside className='px-4 py-6 w-[250px] h-screen border-r-2 border-line'>
+    <aside className='px-4 py-6 w-[250px] h-screen border-r-2 border-line fixed top-0 left-0'>
         <div className="flex items-center gap-4">
           <Logo/>
           <h2 className="mb-0 mt-0.5">School</h2>

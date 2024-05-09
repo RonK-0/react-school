@@ -31,7 +31,7 @@ const Staff = () => {
     "staff" // key
   );
   return (
-    <section className="flex overflow-x-hidden">
+    <section className="flex relative left-[250px]">
       <Navigation />
       <main className="w-[calc(100%-250px)]">
         <Header />
@@ -41,8 +41,9 @@ const Staff = () => {
               showInfo ? "w-3/4" : "w-full"
             }`}
           >
+            <div className={`fixed bg-primary ${showInfo ? "w-[calc(100%-700px)]" : "w-[calc(100%-300px)]"}`}>
             <div className="flex justify-between items-center">
-              <h1 className="leading-none mb-0">Database</h1>
+              <h1 className="leading-none mb-0">Staff Database</h1>
               <form action="" className="relative">
                 <input
                   type="text"
@@ -74,6 +75,7 @@ const Staff = () => {
               >
                 <FiPlus /> New
               </button>
+            </div>
             </div>
 
             <StaffTable

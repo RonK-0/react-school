@@ -7,6 +7,7 @@ Class Student {
     public $student_age;
     public $student_gender;
     public $student_email;
+    public $student_about;
     public $student_is_active;
     public $student_created;
     public $student_datetime;
@@ -28,6 +29,7 @@ Class Student {
             $sql .= "student_age, ";
             $sql .= "student_gender, ";
             $sql .= "student_email, ";
+            $sql .= "student_about, ";
             $sql .= "student_is_active, ";
             $sql .= "student_created, ";
             $sql .= "student_datetime ";
@@ -37,6 +39,7 @@ Class Student {
             $sql .= ":student_age, ";
             $sql .= ":student_gender, ";
             $sql .= ":student_email, ";
+            $sql .= ":student_about, ";
             $sql .= ":student_is_active, ";
             $sql .= ":student_created, ";
             $sql .= ":student_datetime ";
@@ -49,6 +52,7 @@ Class Student {
                 "student_class" => $this->student_class,
                 "student_gender" => $this->student_gender,
                 "student_email" => $this->student_email,
+                "student_about" => $this->student_about,
                 "student_is_active" => $this->student_is_active,
                 "student_created" => $this->student_created,
                 "student_datetime" => $this->student_datetime,
@@ -100,6 +104,7 @@ Class Student {
             $sql .= "student_class = :student_class, ";
             $sql .= "student_gender = :student_gender, ";
             $sql .= "student_email = :student_email, ";
+            $sql .= "student_about = :student_about, ";
             $sql .= "student_datetime = :student_datetime ";
             $sql .= "where student_aid  = :student_aid ";
             $query = $this->connection->prepare($sql);
@@ -109,6 +114,7 @@ Class Student {
                 "student_class" => $this->student_class,
                 "student_gender" => $this->student_gender,
                 "student_email" => $this->student_email,
+                "student_about" => $this->student_about,
                 "student_datetime" => $this->student_datetime,
                 "student_aid" => $this->student_aid,
             ]);

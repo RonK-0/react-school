@@ -4,12 +4,22 @@ import ModalWrapper from "../../../../partials/modals/ModalWrapper";
 import SpinnerButton from "../../../../partials/spinners/SpinnerButton";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { queryData } from "../../../../helpers/queryData";
-import { InputText } from "../../../../helpers/FormInputs";
+import {
+  InputSelect,
+  InputText,
+  InputTextArea,
+} from "../../../../helpers/FormInputs";
 import { Form, Formik } from "formik";
 // import * as Yup from 'yup'
 import { object, string, number } from "yup";
 
-const ModalAddStudent = ({ setIsAdd, setMessage, setIsSuccess, itemEdit, setIsError }) => {
+const ModalAddStudent = ({
+  setIsAdd,
+  setMessage,
+  setIsSuccess,
+  itemEdit,
+  setIsError,
+}) => {
   // const ModalAddStudent = ({ setAddStudent, showAddStudent }) => {
   // const handleAddStudent = () => setAddStudent(!showAddStudent);
 
@@ -45,6 +55,7 @@ const ModalAddStudent = ({ setIsAdd, setMessage, setIsSuccess, itemEdit, setIsEr
     student_age: itemEdit ? itemEdit.student_age : "",
     student_gender: itemEdit ? itemEdit.student_gender : "",
     student_email: itemEdit ? itemEdit.student_email : "",
+    student_about: itemEdit ? itemEdit.student_about : "",
   };
   const yupSchema = object({
     student_name: string().required("Name Required*"),
@@ -52,6 +63,7 @@ const ModalAddStudent = ({ setIsAdd, setMessage, setIsSuccess, itemEdit, setIsEr
     student_gender: string().required("Gender Required*"),
     student_age: number().required("Age Required*"),
     student_email: string().required("Email Required*").email("Invalid Email"),
+    student_about: string().required("About Info Required*"),
   });
 
   return (
@@ -76,29 +88,37 @@ const ModalAddStudent = ({ setIsAdd, setMessage, setIsSuccess, itemEdit, setIsEr
             }}
           >
             <Form action="" className="flex flex-col h-[calc(100vh-110px)]">
-              <div className="grow overflow-y-auto">
+              <div className="grow overflow-y-scroll">
                 <div className="input-wrap">
                   <InputText label="Name" type="text" name="student_name" />
                 </div>
                 <div className="input-wrap">
                   <InputText label="Class" type="text" name="student_class" />
                 </div>
-                {/* <div className="input-wrap">
-                  <label htmlFor="student_gender">Gender</label>
+                <div className="input-wrap">
+                  <InputSelect label="Gender" name="student_gender">
+                    <option value="" hidden>Select</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                  </InputSelect>
+                  {/* <label htmlFor="student_gender">Gender</label>
                   <select name="student_gender" id="" required>
                     <option value="Male">Male</option>
                     <option value="Female">Female</option>
                   </select> *
-                  <small className="error-msg">Required*</small> *
-                </div> */}
-                <div className="input-wrap">
-                  <InputText label="Gender" type="text" name="student_gender" />
+                  <small className="error-msg">Required*</small> * */}
                 </div>
+                {/* <div className="input-wrap">
+                  <InputText label="Gender" type="text" name="student_gender" />
+                </div> */}
                 <div className="input-wrap">
                   <InputText label="Email" type="text" name="student_email" />
                 </div>
                 <div className="input-wrap">
                   <InputText label="Age" type="text" name="student_age" />
+                </div>
+                <div className="input-wrap">
+                  <InputTextArea label="About" type="text" name="student_about" />
                 </div>
               </div>
               <div className="form-action">
