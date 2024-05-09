@@ -12,13 +12,9 @@ import {
   setIsActive,
 } from "../../../store/StoreAction";
 
-const ModalConfirm = ({
-  position,
-  queryKey,
-  endpoint,
-}) => {
+const ModalConfirm = ({ position, queryKey, endpoint }) => {
   const { dispatch, store } = React.useContext(StoreContext);
-  const handleClose = () => dispatch(setIsActive(1));
+  const handleClose = () => dispatch(setIsActive(false));
 
   const isArchiving = store.isArchive;
 
@@ -30,15 +26,16 @@ const ModalConfirm = ({
       queryClient.invalidateQueries({ queryKey: [queryKey] });
 
       if (data.success) {
-        dispatch(setIsActive(1));
+        dispatch(setIsActive(false));
         dispatch(setSuccess(true));
-        dispatch(setMessage(
-          `Record successfully ${isArchiving ? "Restored" : "Archived"}.`
-        ));
+        dispatch(
+          setMessage(
+            `Record successfully ${isArchiving ? "Restored" : "Archived"}.`
+          )
+        );
       } else {
         dispatch(setError(true));
         dispatch(setMessage(data.error));
-        console.log(data.error);
       }
     },
   });
@@ -63,16 +60,20 @@ const ModalConfirm = ({
               <PiArchive className="text-4xl text-warning mb-3" />
               <div>
                 <h2 className="mb-2">
-                  {isArchiving === true
+                  {isArchiving === 0
                     ? "Archive "
-                    : "Restore "}
-                    Record
+                    : isArchiving === 1
+                    ? "Restore "
+                    : "[UNSPECIFIED FUNCTION]"}
+                  Record
                 </h2>
                 <p className="mb-5">
                   Are you sure you want to
-                  {isArchiving === true
+                  {isArchiving === 0
                     ? " archive "
-                    : " restore "}
+                    : isArchiving === 1
+                    ? " restore "
+                    : " [UNSPECIFIED FUNCTION] "}
                   this record?
                 </p>
               </div>

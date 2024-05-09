@@ -36,15 +36,15 @@ const StudentTable = ({ isLoading, student, setItemEdit }) => {
   };
 
   const handleArchive = (item) => {
-    dispatch(setIsActive(0));
+    dispatch(setIsActive(true));
     setId(item.student_aid);
-    dispatch(setIsArchive(true));
+    dispatch(setIsArchive(0));
   };
 
   const handleRestore = (item) => {
-    dispatch(setIsActive(0));
+    dispatch(setIsActive(true));
     setId(item.student_aid);
-    dispatch(setIsArchive(false));
+    dispatch(setIsArchive(1));
   };
 
   const handleDelete = (item) => {
